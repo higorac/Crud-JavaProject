@@ -16,6 +16,8 @@ public class App {
             System.out.println("\nMenu:");
             System.out.println("1 - Cadastrar Cliente");
             System.out.println("2 - Listar Clientes");
+            System.out.println("3 - Procurar Cliente");
+            System.out.println("4 - Remover Cliente");
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
             op = sc.nextInt();
@@ -27,6 +29,12 @@ public class App {
             	case 2:
             		BRADESCO.listarClientes();
             		break;
+            	case 3:
+            		BRADESCO.procurarClientes();
+            		break;
+            	case 4:
+            		BRADESCO.removerClinte();
+            		break;
             	case 0:
             		System.out.println("Encerrando programa..");
             		break;
@@ -36,6 +44,5 @@ public class App {
 			
 		} while(op != 0);
 		
-		sc.close();
 	}
 }
