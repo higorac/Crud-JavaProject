@@ -4,14 +4,46 @@ import java.util.Scanner;
 
 public class Banco {
 
-	Scanner sc;
-	Scanner str;
+	Scanner str = new Scanner(System.in);
+	Scanner sc = new Scanner(System.in);
+
 	Cliente clientes[] = new Cliente[3];
 	int indice = 0;
+	int op = 0;
 
-	public Banco(Scanner sc, Scanner str) { // Construtor recebe Scanner
-		this.sc = sc;
-		this.str = str;
+	void sistema() {
+		do {
+
+			System.out.println("\nMenu:");
+			System.out.println("1 - Cadastrar Cliente");
+			System.out.println("2 - Listar Clientes");
+			System.out.println("3 - Procurar Cliente");
+			System.out.println("4 - Remover Cliente");
+			System.out.println("0 - Sair");
+			System.out.print("Escolha uma opção: ");
+			op = sc.nextInt();
+
+			switch (op) {
+			case 1:
+				cadastroBancario();
+				break;
+			case 2:
+				listarClientes();
+				break;
+			case 3:
+				procurarClientes();
+				break;
+			case 4:
+				removerClinte();
+				break;
+			case 0:
+				System.out.println("Encerrando programa..");
+				break;
+			default:
+				System.out.println("Opção invalida.");
+			}
+
+		} while (op != 0);
 	}
 
 	void cadastroBancario() {
@@ -102,101 +134,104 @@ public class Banco {
 			System.out.println("Opção invalida.");
 			return;
 		}
-		
-		if(!encontrado) {
+
+		if (!encontrado) {
 			System.out.println("Cliente não foi encontrado.");
 		}
 	}
 
-	public void exibirCliente(Cliente c) {
+	void exibirCliente(Cliente c) {
 		System.out.println("\n--- Cliente Encontrado ---");
 		System.out.println("Nome: " + c.cliente_nome);
 		System.out.println("CPF: " + c.cpf);
 		System.out.println("ID: " + c.id);
 		System.out.println("Saldo: " + c.saldo_bancario);
 	}
-	
+
 	void removerClinte() {
 		if (indice == 0) {
 			System.out.println("Não há clientes cadastrados.");
 			return;
 		}
-		
+
 		System.out.println("---/ Remover Cliente /---");
 		System.out.println("1 - Remover por Nome");
 		System.out.println("2 - Remover por CPF");
 		System.out.println("3 - Remover por ID");
 		System.out.print("Escolha uma opção: ");
 		int opcao = sc.nextInt();
-		
+
 		boolean removido = false;
-		
-		switch(opcao) {
+
+		switch (opcao) {
 		case 1:
 			System.out.print("Digite o nome do Cliente: ");
 			String nomeBusca = str.nextLine();
 			removido = removerPorNome(nomeBusca);
+			if(!removido) {
+				System.out.println("Cliente não encontrado, não foi possivel realizar a remoção.");
+			}
 			break;
 		case 2:
 			System.out.print("Digite o CPF do Cliente: ");
 			String CPFBusca = str.nextLine();
 			removido = removerPorCPF(CPFBusca);
+			if(!removido) {
+				System.out.println("Cliente não encontrado, não foi possivel realizar a remoção.");
+			}
 			break;
 		case 3:
 			System.out.print("Digite o ID do Cliente: ");
 			int idBusca = sc.nextInt();
 			removido = removerPorID(idBusca);
+			if(!removido) {
+				System.out.println("Cliente não encontrado, não foi possivel realizar a remoção.");
+			}
 			break;
 		default:
 			System.out.println("Opção Inválida.");
 			return;
 		}
 	}
-	
+
 	boolean removerPorNome(String nome) {
-		for(int i = 0; i < indice; i++) {
-			if(clientes[i].cliente_nome.equalsIgnoreCase(nome)) {
+		for (int i = 0; i < indice; i++) {
+			if (clientes[i].cliente_nome.equalsIgnoreCase(nome)) {
 				removerClienteNaPosicao(i);
 				System.out.println("Remoção bem sucedida.");
 				return true;
-			} else {
-				System.out.println("Nenhum cliente encontrado. Falha na remoção.");
 			}
 		}
 		return false;
 	}
-	
+
 	boolean removerPorID(int id) {
-		for(int i = 0; i < indice; i++) {
-			if(clientes[i].id == id) {
+		for (int i = 0; i < indice; i++) {
+			if (clientes[i].id == id) {
 				removerClienteNaPosicao(i);
 				System.out.println("Remoção bem sucedida.");
 				return true;
-			} else {
-				System.out.println("Nenhum cliente encontrado. Falha na remoção.");
 			}
 		}
 		return false;
 	}
-	
+
 	boolean removerPorCPF(String cpf) {
-		for(int i = 0; i < indice; i++) {
-			if(clientes[i].cpf.equalsIgnoreCase(cpf)) {
+		for (int i = 0; i < indice; i++) {
+			if (clientes[i].cpf.equalsIgnoreCase(cpf)) {
 				removerClienteNaPosicao(i);
 				System.out.println("Remoção bem sucedida.");
 				return true;
-			} else {
-				System.out.println("Nenhum cliente encontrado. Falha na remoção.");
 			}
 		}
 		return false;
 	}
-	
+
 	void removerClienteNaPosicao(int posicao) {
-		for(int i = posicao; i < indice - 1; i++) {
-			clientes[i] = clientes[i-1];
+		for (int i = posicao; i < indice - 1; i++) {
+			clientes[i] = clientes[i - 1];
 		}
-		clientes[indice -1] = null;
+		clientes[indice - 1] = null;
 		indice--;
 	}
 }
