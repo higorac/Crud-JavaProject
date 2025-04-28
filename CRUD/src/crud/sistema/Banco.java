@@ -45,7 +45,7 @@ public class Banco {
 				procurarClientes.procurarClientes(clientes, indice);
 				break;
 			case 4:
-				removerCliente.removerCliente(clientes, indice);
+				indice = removerCliente.removerCliente(clientes, indice);
 				break;
 			case 0:
 				System.out.println("Encerrando programa..");
