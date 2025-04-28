@@ -1,4 +1,6 @@
-package crud;
+package crud.main;
+
+import crud.sistema.Banco;
 
 public class App {
 	public static void main(String[] args) {
