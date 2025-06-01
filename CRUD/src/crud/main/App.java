@@ -1,6 +1,6 @@
 package crud.main;
 
-import crud.sistema.Banco;
+import crud.sistema.gerenciador.Banco;
 
 public class App {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package crud.sistema;
+package crud.sistema.areacliente;
 
 import java.util.Scanner;
 
@@ -60,7 +60,7 @@ public class RemoverClientes {
 
     private boolean removerPorNome(String nome, Cliente[] clientes, int indice) {
         for (int i = 0; i < indice; i++) {
-            if (clientes[i].cliente_nome.equalsIgnoreCase(nome)) {
+            if (clientes[i].getNome().equalsIgnoreCase(nome)) {
                 removerClienteNaPosicao(i, clientes, indice);
                 System.out.println("Remoção bem sucedida.");
                 return true;
@@ -82,7 +82,7 @@ public class RemoverClientes {
 
     private boolean removerPorCPF(String cpf, Cliente[] clientes, int indice) {
         for (int i = 0; i < indice; i++) {
-            if (clientes[i].cpf.equalsIgnoreCase(cpf)) {
+            if (clientes[i].getCpf().equalsIgnoreCase(cpf)) {
                 removerClienteNaPosicao(i, clientes, indice);
                 System.out.println("Remoção bem sucedida.");
                 return true;

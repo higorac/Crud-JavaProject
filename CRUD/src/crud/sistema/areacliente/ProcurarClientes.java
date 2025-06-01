@@ -1,4 +1,4 @@
-package crud.sistema;
+package crud.sistema.areacliente;
 import java.util.Scanner;
 
 public class ProcurarClientes {
@@ -25,7 +25,7 @@ public class ProcurarClientes {
                 System.out.println("Digite o nome do cliente: ");
                 String nomeBusca = str.nextLine();
                 for (int i = 0; i < indice; i++) {
-                    if (clientes[i].cliente_nome.equalsIgnoreCase(nomeBusca)) {
+                    if (clientes[i].getNome().equalsIgnoreCase(nomeBusca)) {
                         exibirCliente(clientes[i]);
                         encontrado = true;
                     }
@@ -45,7 +45,7 @@ public class ProcurarClientes {
                 System.out.println("Digite o CPF do cliente: ");
                 String cpfBusca = str.nextLine();
                 for (int i = 0; i < indice; i++) {
-                    if (clientes[i].cpf.equalsIgnoreCase(cpfBusca)) {
+                    if (clientes[i].getCpf().equalsIgnoreCase(cpfBusca)) {
                         exibirCliente(clientes[i]);
                         encontrado = true;
                     }
@@ -63,8 +63,8 @@ public class ProcurarClientes {
 
     private void exibirCliente(Cliente c) {
         System.out.println("\n--- Cliente Encontrado ---");
-        System.out.println("Nome: " + c.cliente_nome);
-        System.out.println("CPF: " + c.cpf);
+        System.out.println("Nome: " + c.getNome());
+        System.out.println("CPF: " + c.getCpf());
         System.out.println("ID: " + c.id);
         System.out.println("Saldo: " + c.saldo_bancario);
     }
